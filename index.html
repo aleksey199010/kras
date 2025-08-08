@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Красавчик</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #photo-container {
+            display: none; /* Скрываем по умолчанию */
+            animation: fadeIn 1s forwards;
+            max-width: 100%;
+        }
+        #photo-container img {
+            max-width: 90vw;
+            max-height: 50vh;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #message {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+            display: none; /* Скрываем по умолчанию */
+            animation: fadeIn 1s forwards;
+            padding: 0 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="mainButton">Красавчик</button>
+
+    <div id="photo-container">
+        <img id="personPhoto" src="" alt="Фото человека">
+        <br>
+        <button id="confirmButton">Подтверждаю</button>
+    </div>
+
+    <p id="message">Хрен ты угадал, это я</p>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        const tg = window.Telegram.WebApp;
+
+        const mainButton = document.getElementById('mainButton');
+        const confirmButton = document.getElementById('confirmButton');
+        const photoContainer = document.getElementById('photo-container');
+        const personPhoto = document.getElementById('personPhoto');
+        const messageText = document.getElementById('message');
+
+        mainButton.addEventListener('click', () => {
+            mainButton.style.display = 'none';
+            photoContainer.style.display = 'block';
+
+            // Первая фотография
+            personPhoto.src = 'https://i.postimg.cc/66MR47cR/photo-2024-10-26-12-21-31.jpg';
+        });
+
+        confirmButton.addEventListener('click', () => {
+            confirmButton.style.display = 'none';
+            messageText.style.display = 'block';
+
+            // Вторая фотография
+            personPhoto.src = 'https://i.postimg.cc/Zqm0MZj4/photo-2025-08-08-16-23-48.jpg';
+        });
+
+        tg.expand();
+    </script>
+
+</body>
+</html>
